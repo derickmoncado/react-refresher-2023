@@ -5,6 +5,7 @@ export default function App() {
 	const [newItem, setNewItem] = useState("");
 	const [todos, setTodos] = useState([]);
 
+	// handle form submit
 	function handleSubmit(e) {
 		e.preventDefault();
 
@@ -16,6 +17,19 @@ export default function App() {
 		});
 
 		setNewItem("");
+	}
+
+	// toggle todo
+	function toggleTodo(id, completed) {
+		setTodos((currentTodos) => {
+			return currentTodos.map((todo) => {
+				if (todo.id === id) {
+					return { ...todo, completed };
+				}
+
+				return todo;
+			});
+		});
 	}
 
 	return (
@@ -41,6 +55,9 @@ export default function App() {
 								<input
 									type="checkbox"
 									checked={todo.completed}
+									onChange={(e) =>
+										toggleTodo(todo.id, e.target.checked)
+									}
 								/>
 								{todo.title}
 							</label>
