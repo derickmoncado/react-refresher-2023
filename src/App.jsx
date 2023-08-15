@@ -57,6 +57,7 @@ export default function App() {
 			</form>
 			<h1 className="header">Todo List</h1>
 			<ul className="list">
+				{todos.length === 0 && "no todos"} {/* short circuiting */}
 				{todos.map((todo) => {
 					return (
 						<li key={todo.id}>
